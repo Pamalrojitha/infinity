@@ -54,4 +54,4 @@ confusionMatrix(tree.defualt.predicted,cdefault_test$NEXT_MONTH_DEFAULT)
 
 tree.newdefualt.predicted<-predict(tree,credit_card_default_test,type='class')
 View(tree.newdefualt.predicted)
-write.table(tree.newdefualt.predicted,file = "Predictions8.csv",sep=",")
+write.table(tree.newdefualt.predicted,file = "Predictions.csv",sep=",")
