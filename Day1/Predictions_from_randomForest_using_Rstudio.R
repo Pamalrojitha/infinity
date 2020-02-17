@@ -44,25 +44,25 @@ cdefault_test<-credit_card_default_train[cl_id==2,]
 
 #Model developing
 
-bestmtry2<-tuneRF(cdefault_train,cdefault_train$NEXT_MONTH_DEFAULT,stepFactor=1.2,improve=0.01,trace =T,plot=T)
-default_forest2<-randomForest(NEXT_MONTH_DEFAULT ~.,data = cdefault_train)
-default_forest2
-default_forest2$importance
-varImpPlot(default_forest2)
+bestmtry<-tuneRF(cdefault_train,cdefault_train$NEXT_MONTH_DEFAULT,stepFactor=1.2,improve=0.01,trace =T,plot=T)
+default_forest<-randomForest(NEXT_MONTH_DEFAULT ~.,data = cdefault_train)
+default_forest
+default_forest$importance
+varImpPlot(default_forest)
 
 #predicting and accuracy checking
 
-predic2<-predict(default_forest2,newdata = cdefault_test,type = "class")
-predic2
-predic2.correct <- ifelse(predic2 > 0.5, 1, 0)
-predic2.correct 
+predic<-predict(default_forest,newdata = cdefault_test,type = "class")
+predic
+predic.correct <- ifelse(predic > 0.5, 1, 0)
+predic.correct 
 
-confusionMatrix(table(predic2.correct,cdefault_test$NEXT_MONTH_DEFAULT))
+confusionMatrix(table(predic.correct,cdefault_test$NEXT_MONTH_DEFAULT))
 
-predic2<-predict(default_forest2,newdata = credit_card_default_test,type = "class")
-predic2
-predic2.correct <- ifelse(predic > 0.5, 1, 0)
-predic2.correct 
-write.table(predic.correct,file = "Predictions6.csv",sep=",")
+finalpredic<-predict(default_forest,newdata = credit_card_default_test,type = "class")
+finalpredic
+finalpredic.correct <- ifelse(predic > 0.5, 1, 0)
+finalpredic.correct 
+write.table(finalpredic.correct,file = "Predictions6.csv",sep=",")
 
 
