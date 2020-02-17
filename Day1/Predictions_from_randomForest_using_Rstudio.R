@@ -61,7 +61,7 @@ confusionMatrix(table(predic.correct,cdefault_test$NEXT_MONTH_DEFAULT))
 
 finalpredic<-predict(default_forest,newdata = credit_card_default_test,type = "class")
 finalpredic
-finalpredic.correct <- ifelse(predic > 0.5, 1, 0)
+finalpredic.correct <- ifelse(finalpredic > 0.5, 1, 0)
 finalpredic.correct 
 write.table(finalpredic.correct,file = "Predictions6.csv",sep=",")
 
