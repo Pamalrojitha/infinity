@@ -31,6 +31,7 @@ count(credit_card_default_train, vars =  AGE  )
 
 #Feature Engineering
 #deleting columns with no correlation to next_month_defualt
+plot_correlation(na.omit(credit_card_default_train), maxcat = 5L)
 credit_card_new <- select(credit_card_default_train, -one_of('Client_ID','DUE_AMT_JULY', 'DUE_AMT_AUG',
                                                              'DUE_AMT_SEP','DUE_AMT_OCT','DUE_AMT_NOV','DUE_AMT_DEC'))
 
